@@ -18,3 +18,5 @@ function add_role_viajero() {
  
 // Add the simple_role.
 add_action('init', 'add_role_viajero');
+
+
