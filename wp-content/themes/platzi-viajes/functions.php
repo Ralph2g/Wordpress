@@ -27,6 +27,7 @@ function viajes_init() {
         'public'            => true,
         'public_queryable'  => true,
         'show_ui'           => true,
+        'show_in_rest'      => true,
         'show_in_menu'      => true,
         'query_var'         => true,
         'rewrite'           => array( 'slug' => 'viaje' ),
@@ -192,3 +193,58 @@ if( function_exists('acf_add_local_field_group') ):
     ));
     
     endif;
+
+// Mostrando nuestros biajes en la API Rest
+
+    add_action('rest_api_init', 'register_custom_fields');
+
+function register_custom_fields()
+{
+    register_rest_field(
+        'viaje',
+        'destino',
+        array(
+            'get_callback' => 'show_fields'
+        )
+    );
+    register_rest_field(
+        'viaje',
+        'vacunas_obligatorias',
+        array(
+            'get_callback' => 'show_fields'
+        )
+    );
+    register_rest_field(
+        'viaje',
+        'vacunas_recomendadas',
+        array(
+            'get_callback' => 'show_fields'
+        )
+    );
+    register_rest_field(
+        'viaje',
+        'transporte_local',
+        array(
+            'get_callback' => 'show_fields'
+        )
+    );
+    register_rest_field(
+        'viaje',
+        'peligrosidad',
+        array(
+            'get_callback' => 'show_fields'
+        )
+    );
+    register_rest_field(
+        'viaje',
+        'moneda_local',
+        array(
+            'get_callback' => 'show_fields'
+        )
+    );
+
+}
+
+function show_fields( $object, $field_name, $request ) {
+  return get_post_meta( $object[ 'id' ], $field_name, true );
+}
