@@ -20,6 +20,8 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
+define('WP_CACHE', true);
+define( 'WPCACHEHOME', '/opt/lampp/htdocs/wordpress/wp-content/plugins/wp-super-cache/' );
 define( 'DB_NAME', 'Rafael' );
 
 /** MySQL database username */
@@ -79,6 +81,7 @@ $table_prefix = 'wp_';
  */
 define( 'WP_DEBUG', false );
 define( 'FS_METHOD','direct');
+define( 'JETPACK_DEV_DEBUG', true );
 
 /* That's all, stop editing! Happy publishing. */
 
